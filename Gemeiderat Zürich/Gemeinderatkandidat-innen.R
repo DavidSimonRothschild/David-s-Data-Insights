@@ -1,3 +1,16 @@
+library(ggplot2)
+library(tidyverse)
+library(gridExtra)
+library(janitor)
+library(quanteda)
+library(gt)
+
+
+
+
+
+
+
 GRW06 <- read_csv("https://data.stadt-zuerich.ch/dataset/politik-gemeinderatswahlen-2006-alle-kandidierenden/download/GRW-2006-alle-Kandidierenden-OGD.csv")
 GRW10 <- read_csv("https://data.stadt-zuerich.ch/dataset/politik_gemeinderatswahlen_2010_kandidierende/download/gemeinderatswahlen_2010_kandidierende.csv")
 GRW14 <- read_csv("https://data.stadt-zuerich.ch/dataset/politik-gemeinderatswahlen-2014-alle-kandidierenden/download/GRW-2014-alle-Kandidierenden-OGD.csv")
@@ -6,11 +19,7 @@ GRW22 <- read_csv("https://data.stadt-zuerich.ch/dataset/politik_gemeinderatswah
 
 
 
-library(ggplot2)
-library(tidyverse)
-library(gridExtra)
-library(janitor)
-library(quanteda)
+
 
 # Partei Liste
 
@@ -104,31 +113,31 @@ alter_22 <- GRW22$Alter <- 2021 - GRW22$GebJ
 mean_age <- c(mean(alter_06), mean(alter_10), mean(alter_14), mean(alter_18), mean(alter_22))
 median_age <- c(median(alter_06), median(alter_10), median(alter_14), median(alter_18), median(alter_22))
 
-# Create a table with the results
-age_table <- data.frame(
-  Age_Group = c("06", "10", "14", "18", "22"),
-  Mean_Age = mean_age,
-  Median_Age = median_age
-)
+# Calculate standard deviation for each group
+sd_age <- c(sd(alter_06), sd(alter_10), sd(alter_14), sd(alter_18), sd(alter_22))
 
-library(gt)
-library(dplyr)
-
-# Create data frame with mean and median ages
+# Create data frame with mean, median, and standard deviation of ages
 age_df <- data.frame(
   Age_Group = c("06", "10", "14", "18", "22"),
   Mean_Age = mean_age,
-  Median_Age = median_age
+  Median_Age = median_age,
+  SD_Age = sd_age
 )
 
 # Rename columns
 age_df <- age_df %>%
-  rename(Jahr = Age_Group, Durchschnitt = Mean_Age, Median = Median_Age)
+  rename(Jahr = Age_Group, Durchschnitt = Mean_Age, Median = Median_Age, Standardabweichung = SD_Age)
 
 # Create gt table
 age_table <- age_df %>%
   gt() %>%
-  tab_header(title = "Durchschnitt und Median pro Wahljahr")
+  tab_header(title = "Durchschnitt, Median und Standardabweichung pro Wahljahr")
+
+# Create gt table
+age_table <- age_df %>%
+  gt() %>%
+  tab_header(title = "Durchschnitt, Median und Standardabweichung pro Wahljahr") %>%
+  fmt_number(columns = c("Durchschnitt", "Median", "Standardabweichung"), decimals = 1)
 
 age_table
 

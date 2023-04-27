@@ -15,7 +15,7 @@ topN_df <- data.frame(Surname = names(topN), Frequency = topN)
 n06 <- ggplot(data = topN_df, aes(x = reorder(Surname, Frequency), y = Frequency)) +
   geom_bar(stat = "identity") +
   theme_minimal() +
-  labs(title = "Top 15 Surnames", x = "Surnames", y = "Frequency") +
+  labs(title = "Top 15 Nachnamen", x = "Nachnamen", y = "Häufigkeit") +
   coord_flip() +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_y_continuous(breaks = seq(0, max(topN_df$Frequency), by = 1))
@@ -38,7 +38,7 @@ topN_df <- data.frame(Surname = names(topN), Frequency = topN)
 n10 <- ggplot(data = topN_df, aes(x = reorder(Surname, Frequency), y = Frequency)) +
   geom_bar(stat = "identity") +
   theme_minimal() +
-  labs(title = "Top 15 Surnames", x = "Surnames", y = "Frequency") +
+  labs(title = "Top 15 Nachname", x = "Nachnamen", y = "Häufigkeit") +
   coord_flip() +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_y_continuous(breaks = seq(0, max(topN_df$Frequency), by = 1))
@@ -62,7 +62,7 @@ topN_df <- data.frame(Surname = names(topN), Frequency = topN)
 n14 <- ggplot(data = topN_df, aes(x = reorder(Surname, Frequency), y = Frequency)) +
   geom_bar(stat = "identity") +
   theme_minimal() +
-  labs(title = "Top 15 Surnames", x = "Surnames", y = "Frequency") +
+  labs(title = "Top 15 Nachname", x = "Nachnamen", y = "Häufigkeit") +
   coord_flip() +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_y_continuous(breaks = seq(0, max(topN_df$Frequency), by = 1))
@@ -88,7 +88,7 @@ topN_df <- data.frame(Surname = names(topN), Frequency = topN)
 n18 <- ggplot(data = topN_df, aes(x = reorder(Surname, Frequency), y = Frequency)) +
   geom_bar(stat = "identity") +
   theme_minimal() +
-  labs(title = "Top 15 Surnames", x = "Surnames", y = "Frequency") +
+  labs(title = "Top 15 Nachname", x = "Nachnamen", y = "Häufigkeit") +
   coord_flip() +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_y_continuous(breaks = seq(0, max(topN_df$Frequency), by = 1))
@@ -115,13 +115,13 @@ topN_df <- data.frame(Surname = names(topN), Frequency = topN)
 n22 <- ggplot(data = topN_df, aes(x = reorder(Surname, Frequency), y = Frequency)) +
   geom_bar(stat = "identity") +
   theme_minimal() +
-  labs(title = "Top 15 Surnames", x = "Surnames", y = "Frequency") +
+  labs(title = "Top 15 Nachname", x = "Nachnamen", y = "Häufigkeit") +
   coord_flip() +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_y_continuous(breaks = seq(0, max(topN_df$Frequency), by = 1))
 n22
 
-
+library(gridExtra)
 grid.arrange(n06, n10, n14, n18,n22)
 
 
