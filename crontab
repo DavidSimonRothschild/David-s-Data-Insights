@@ -1,0 +1,2 @@
+# Cron job to run the scrape_temperatures.R script every 30 minutes
+*/30 * * * * Rscript /path/to/your/script/scrape_temperatures.R
