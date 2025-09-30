@@ -1,6 +1,7 @@
-#
+
 # =========================
 # LinkedIn-optimierte Plots für Abstimmungsanalyse
+#posting
 # =========================
 
 library(tidyverse)
